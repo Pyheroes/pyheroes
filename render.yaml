@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: generic-telegram-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /
+    disk:
+      name: bot-data
+      mountPath: /opt/render/project/src/database
+      sizeGB: 1
