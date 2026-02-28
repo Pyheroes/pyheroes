@@ -6,6 +6,8 @@ group_id = -1003509081936
 
 # Use environment variable for DB path on Render, or default to local path
 db_path = os.environ.get("DATABASE_URL", "database/bot.db")
+# Ensure the directory exists
+os.makedirs(os.path.dirname(db_path), exist_ok=True)
 connection = sq.connect(db_path, check_same_thread=False)
 
 cursor = connection.cursor()
