@@ -71,6 +71,7 @@ def process_update(update):
         
         user_state = get_user_state(chat_id)
         if user_state == "WAITING_NAME":
+            print("Are you a developer? a message just dropped. Nothing to show you")
             name = text.strip()
             set_user_name(chat_id, name)
             set_user_state(chat_id, state_idle)
@@ -110,17 +111,18 @@ def run_polling():
 
 def keep_alive():
     # Placeholder URLs. Replace with your own production URLs.
-    urls = []
+    urls = ["https://www.vectorsauto.com","https://www.vectorstutor.com"]
     if not urls:
         return
         
-    time.sleep(10)
+    time.sleep(2)
     while True:
         for url in urls:
             try:
                 requests.get(url, timeout=10)
             except Exception:
                 pass
+        print("clicked. Alhamdulillah!")
         time.sleep(180)
 
 # Start background threads once (prevents double-start in debug mode)
