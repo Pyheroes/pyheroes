@@ -49,8 +49,11 @@ def handle_success():
 
 @app.route("/webhook", methods = ["POST"])
 def webhook():
+    print("lecture starts")
     update = request.get_json()
     process_update(update)
+    pinger()
+    print("lecture ends")
     return "OK"
 
 def process_update(update):
@@ -99,6 +102,7 @@ def run_polling():
     requests.get(f"{Telegram_API}/deleteWebhook")
     print("--- POLLING STARTED (Local Testing Mode) ---")
     while True:
+        print("clicking buttons")
         try:
             response = requests.get(f"{Telegram_API}/getUpdates?offset={offset}&timeout=30").json()
             if response.get("ok"):
@@ -137,6 +141,16 @@ if os.environ.get('WERKZEUG_RUN_MAIN') == 'true' or not app.debug:
 @app.route("/")
 def webapp2():
     return render_template("index.html")
+
+def pinger():
+    urls = ["https://www.vectorsauto.com","https://www.vectorstutor.com"]
+    for url in urls:
+        try:    
+            requests.get(url, timeout = 10)
+        except Exception as e:
+            print(e)
+        print("A lecture just began")
+              
 
 def send_message(chat_id, text):
     payload = {"chat_id": chat_id, "text": text}
