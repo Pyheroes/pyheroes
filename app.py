@@ -115,7 +115,7 @@ def run_polling():
 
 def keep_alive():
     # Placeholder URLs. Replace with your own production URLs.
-    urls = ["https://www.vectorsauto.com","https://www.vectorstutor.com"]
+    urls = ["https://www.vectorsauto.com","https://pythonheroes-ed2v.onrender.com"]
     if not urls:
         return
         
